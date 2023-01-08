@@ -64,7 +64,7 @@ public class TryCatch {
         }
     }
     public static LocalDate tryCatchDate(Scanner scanner) {
-        Pattern pattern = Pattern.compile("(\\d|[0-2][0-9]|3[0-1])[-|/](\\d|0[1-9]|1[0-2])[-|/]\\d{4}");
+        Pattern pattern = Pattern.compile("([1-9]|[0-2][0-9]|3[0-1])[-|/]([1-9]|0[1-9]|1[0-2])[-|/]\\d{4}");
         while (true) {
             System.out.println("Enter the date of bills you want (Example:12/11/1996 or 12-11-1996 ..)");
             try {

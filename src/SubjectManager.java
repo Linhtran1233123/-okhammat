@@ -7,7 +7,6 @@ public class SubjectManager {
 
     public SubjectManager(ArrayList<Subject> subjects) {
         this.subjects = subjects;
-        this.subjects.add(new Subject("Empty"));
     }
 
     public ArrayList<Subject> getSubjects() {

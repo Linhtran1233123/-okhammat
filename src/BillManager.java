@@ -374,7 +374,7 @@ public class BillManager {
         }
         return  true;
     }
-    public void displayBill(ArrayList<Bill> temp) {
+    public void displayBill(ArrayList<Bill> temp)  {
         if (!temp.isEmpty()) {
             System.out.printf("%-10s%-15s%-15s%-15s%-15s%-15s%-15s%s", "Index", "Name", "Subject", "Date", "Time", "Expect money", "Real money", "Left money" + "\n");
             int count = 0;

@@ -5,8 +5,17 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        SubjectManager subjectManager = new SubjectManager(new ArrayList<>());
+        SubjectManager subjectManager;
+        if(WriteReadFile.loadSubject()!=null) {
+            subjectManager = new SubjectManager(WriteReadFile.loadSubject());
+        }else{
+             subjectManager = new SubjectManager(new ArrayList<>());
+        }
         BillManager billManager = new BillManager(subjectManager);
+        if (WriteReadFile.loadBill(subjectManager)!=null) {
+            billManager.setBills(WriteReadFile.loadBill(subjectManager));
+        }
+        BillCalculator billCalculator= new BillCalculator(billManager);
         Scanner scanner = new Scanner(System.in);
         int choice;
         do {
@@ -17,6 +26,7 @@ public class Main {
             System.out.println("5.Delete bills");
             System.out.println("6.Update bills");
             System.out.println("7.Menu to subject");
+            System.out.println("8.Summary spent money display by date,month,year ");
             System.out.println("0.Exit");
             System.out.println("Enter your choice");
             choice = TryCatch.tryCatchInt(scanner);
@@ -42,6 +52,11 @@ public class Main {
                 case 7:
                     menuOfSubject(subjectManager,scanner,billManager);
                     break;
+                case 8:
+                    menuOfSummarySpentMoney(billCalculator,scanner);
+                case 0:
+                    WriteReadFile.saveBill(billManager.getBills(),"Bill");
+                    WriteReadFile.saveBill(subjectManager.getSubjects(),"Subject");
             }
 
         } while (choice != 0);
@@ -125,6 +140,27 @@ public class Main {
         }
     } while (choice != 0);
 }
-
-
+public static void menuOfSummarySpentMoney(BillCalculator billCalculator,Scanner scanner){
+    int choice;
+    do {
+        System.out.println("MENU:");
+        System.out.println("1.Display money spent by date");
+        System.out.println("2.Display money spent by month");
+        System.out.println("3.Display money spent by year");
+        System.out.println("0. Exit");
+        System.out.println("Enter your choice: ");
+        choice = TryCatch.tryCatchInt(scanner);
+        switch (choice) {
+            case 1:
+                billCalculator.calculateSpendingByDay(scanner);
+                break;
+            case 2:
+                billCalculator.calculateSpendingByMonth(scanner);
+                break;
+            case 3:
+                billCalculator.calculateSpendingByYear(scanner);
+                break;
+        }
+    } while (choice != 0);
+}
 }
