@@ -45,24 +45,24 @@ public class SubjectManager {
             } else {
                 System.out.println("The input subject's name has already existed.Please use another name");
             }
-        } else{
+        } else {
             System.out.println("Nothing to add");
         }
     }
 
-        public void deleteCategory(Scanner scanner,ArrayList<Bill> bills){
+    public void deleteCategory(Scanner scanner, ArrayList<Bill> bills) {
         System.out.println("Write the name of the subject you want to delete: ");
         String name = TryCatchAndRegex.tryCatchString(scanner);
-        if(name.equals("")){
+        if (name.equals("")) {
             System.out.println("Nothing to delete");
             return;
         }
-        if(searchSubject(name) != null) {
+        if (searchSubject(name) != null) {
             System.out.println("Success to delete the subject ");
-            Iterator<Bill> itr= bills.iterator();
-            while(itr.hasNext()){
-                Bill bill= itr.next();
-                if(bill.getSubject() == searchSubject(name)){
+            Iterator<Bill> itr = bills.iterator();
+            while (itr.hasNext()) {
+                Bill bill = itr.next();
+                if (bill.getSubject() == searchSubject(name)) {
                     itr.remove();
                 }
             }
@@ -71,6 +71,7 @@ public class SubjectManager {
             System.out.println("Doesn't exist any subject has the input id");
         }
     }
+
     public void editSubjectByName(Scanner scanner) {
         System.out.println("Write the name of the subject you want to edit: ");
         String name = TryCatchAndRegex.tryCatchString(scanner);
@@ -87,9 +88,9 @@ public class SubjectManager {
 
     public void displaySubject() {
         System.out.println("List of Subjects:");
-        System.out.printf("%-10s%s","Index","Name"+"\n");
+        System.out.printf("%-10s%s", "Index", "Name" + "\n");
         for (Subject c : subjects) {
-            System.out.printf("%-10s%s",subjects.indexOf(c),c.getName()+"\n");
+            System.out.printf("%-10s%s", subjects.indexOf(c), c.getName() + "\n");
         }
     }
 }

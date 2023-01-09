@@ -1,4 +1,4 @@
-public class Subject implements  Save {
+public class Subject implements Save {
     private String name;
 
     public Subject(String name) {
@@ -8,12 +8,15 @@ public class Subject implements  Save {
     public String getName() {
         return name;
     }
-    public String StringAttribute(){
-        return this.name+"\n";
+
+    public String StringAttribute() {
+        return this.name + "\n";
     }
-    public static Subject create(String s){
+
+    public static Subject create(String s) {
         return new Subject(s);
     }
+
     public void setName(String name) {
         this.name = name;
     }

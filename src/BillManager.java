@@ -45,14 +45,15 @@ public class BillManager {
             } else {
                 System.out.println("Cant exist two bill with the same name,date,time");
             }
-        }else{
+        } else {
             System.out.println("Cant create bill has value \"\",null,-1");
         }
     }
+
     public void deleteBills(Scanner scanner) {
-        while(true) {
+        while (true) {
             ArrayList<Bill> bills1 = searchBill(scanner);
-            if(bills1== null){
+            if (bills1 == null) {
                 System.out.println("Nothing to delete");
                 return;
             }
@@ -60,29 +61,30 @@ public class BillManager {
                 System.out.println("Sure to delete?");
                 displayBill(bills1);
                 System.out.println("Y to agree/Again to try again/Enter to quit");
-                String input=scanner.nextLine();
+                String input = scanner.nextLine();
                 if (input.equalsIgnoreCase("y")) {
                     for (Bill b : bills1) {
                         bills.remove(b);
                     }
                     System.out.println("Success to delete");
                     return;
-                }else if (input.equalsIgnoreCase("")){
+                } else if (input.equalsIgnoreCase("")) {
                     return;
                 }
             } else {
                 System.out.println("Nothing to delete");
                 System.out.println("Want to try again?Y to agree/enter to exit");
-                if(scanner.nextLine().equals("")){
+                if (scanner.nextLine().equals("")) {
                     return;
                 }
             }
         }
     }
+
     public void updateBills(Scanner scanner) {
         while (true) {
             ArrayList<Bill> bills1 = searchBill(scanner);
-            if(bills1== null){
+            if (bills1 == null) {
                 System.out.println("Nothing to delete");
                 return;
             }
@@ -147,6 +149,7 @@ public class BillManager {
             }
         }
     }
+
     public Subject choiceSubject(Scanner scanner) {
         subjectManager.displaySubject();
         Pattern pattern = Pattern.compile("[a-zA-Z|\\s]+");
@@ -224,9 +227,9 @@ public class BillManager {
         LocalTime time2 = null;
         int choice = -1;
         ArrayList<Bill> temp;
-        ArrayList<Bill> temp1=null;
+        ArrayList<Bill> temp1 = null;
         while (choice != 0) {
-             temp = bills;
+            temp = bills;
             System.out.println("Choose one or more following choices to find bills:");
             System.out.println("1.Enter name");
             System.out.println("2.Enter subject");
@@ -271,30 +274,30 @@ public class BillManager {
                     }
                     break;
                 case 5:
-                    if(!(!name.equals("")&&!subjectName.equals("")&&date1 != null&&time1 != null)){
-                    if (!name.equals("")) {
-                        temp = displayBillByName(name, temp);
-                    }
-                    if (!subjectName.equals("")) {
-                        temp = displayBillBySubject(subjectName, temp);
-                    }
-                    if (date1 != null) {
-                        if (date2 == null) {
-                            temp = displayBillByDate(date1, temp);
-                        } else {
-                            temp = displayBillByDateRange(date1, date2, temp);
+                    if (!(!name.equals("") && !subjectName.equals("") && date1 != null && time1 != null)) {
+                        if (!name.equals("")) {
+                            temp = displayBillByName(name, temp);
                         }
-                    }
-                    if (time1 != null) {
-                        if (time2 == null) {
-                            temp = displayBillByTime(time1, temp);
-                        } else {
-                            temp = displayBillByTimeRange(time1, time2, temp);
+                        if (!subjectName.equals("")) {
+                            temp = displayBillBySubject(subjectName, temp);
                         }
-                    }
-                    temp1=temp;
-                    displayBill(temp);
-                    }else {
+                        if (date1 != null) {
+                            if (date2 == null) {
+                                temp = displayBillByDate(date1, temp);
+                            } else {
+                                temp = displayBillByDateRange(date1, date2, temp);
+                            }
+                        }
+                        if (time1 != null) {
+                            if (time2 == null) {
+                                temp = displayBillByTime(time1, temp);
+                            } else {
+                                temp = displayBillByTimeRange(time1, time2, temp);
+                            }
+                        }
+                        temp1 = temp;
+                        displayBill(temp);
+                    } else {
                         System.out.println("Nothing to search");
                     }
                     break;
@@ -362,22 +365,24 @@ public class BillManager {
         }
         return temp;
     }
-    public boolean checkBill(Bill bill){
-        for (Bill b :bills){
-            if(b.getName().equals(bill.getName())&&b.getDate().compareTo(bill.getDate())==0&&b.getTime().compareTo(bill.getTime())==0){
+
+    public boolean checkBill(Bill bill) {
+        for (Bill b : bills) {
+            if (b.getName().equals(bill.getName()) && b.getDate().compareTo(bill.getDate()) == 0 && b.getTime().compareTo(bill.getTime()) == 0) {
                 return false;
             }
         }
-        return  true;
+        return true;
     }
-    public void displayBill(ArrayList<Bill> temp)  {
+
+    public void displayBill(ArrayList<Bill> temp) {
         if (!temp.isEmpty()) {
             System.out.printf("%-10s%-15s%-15s%-15s%-15s%-15s%-15s%s", "Index", "Name", "Subject", "Date", "Time", "Expect money", "Real money", "Left money" + "\n");
             int count = 0;
             for (Bill b : temp) {
-                    System.out.printf("%3s%-7s", ++count, "");
-                    b.display();
-                }
+                System.out.printf("%3s%-7s", ++count, "");
+                b.display();
+            }
         } else {
             System.out.println("Bills list is empty!!!");
         }
