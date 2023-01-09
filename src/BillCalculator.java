@@ -21,7 +21,7 @@ public class BillCalculator {
         for (Subject element: billManager.getSubjectManager().getSubjects()) {
             moneySubjects.add(new MoneySubject(element));
         }
-        LocalDate date =TryCatch.tryCatchDate(scanner);
+        LocalDate date = TryCatchAndRegex.tryCatchDate(scanner);
         if (date != null) {
             int sumExpectMoney =0;
             int sumRealMoney = 0;
@@ -68,7 +68,7 @@ public class BillCalculator {
         for (Subject element: billManager.getSubjectManager().getSubjects()) {
             moneySubjects.add(new MoneySubject(element));
         }
-        LocalDate month =TryCatch.tryCatchMonth(scanner);
+        LocalDate month = TryCatchAndRegex.tryCatchMonth(scanner);
         if (month != null) {
             int sumExpectMoney =0;
             int sumRealMoney = 0;
@@ -116,7 +116,7 @@ public class BillCalculator {
         for (Subject element: billManager.getSubjectManager().getSubjects()) {
             moneySubjects.add(new MoneySubject(element));
         }
-        int year =TryCatch.tryCatchInt(scanner);
+        int year = TryCatchAndRegex.tryCatchInt(scanner);
         if (year != 0) {
             int sumExpectMoney =0;
             int sumRealMoney = 0;

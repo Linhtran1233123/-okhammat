@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
 import java.util.NoSuchElementException;
@@ -8,7 +7,7 @@ import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TryCatch {
+public class TryCatchAndRegex {
     public static int tryCatchInt(Scanner scanner) {
         while (true) {
             try {
@@ -110,29 +109,6 @@ public class TryCatch {
                 }
             } catch (NoSuchElementException b){
                 b.fillInStackTrace();
-            }
-        }
-    }
-    public LocalDateTime dateCreate(Scanner scanner) {
-        Pattern pattern = Pattern.compile("(\\d|[0-2][0-9]|3[0-1])[-|/](\\d|0[1-9]|1[1-2])[-|/]\\d{4}\\s+(\\d|([0-1][0-9])|(2[0-3])):(\\d|([0-5][0-9])):(\\d|([0-5][0-9]))");
-        while (true) {
-            System.out.println("Enter your date of new bill(Example:12/11/1996 00:00:00 or 12-11-1996 ..)");
-            String date = scanner.nextLine();
-            Matcher matcher = pattern.matcher(date);
-            if (matcher.matches()) {
-                Scanner s = new Scanner(date);
-                s.findInLine("(\\d+)[-/](\\d+)[-/](\\d+)\\s+(\\d+):(\\d+):(\\d+)");
-                MatchResult result = s.match();
-                int day = Integer.parseInt(result.group(1));
-                int month = Integer.parseInt(result.group(2));
-                int year = Integer.parseInt(result.group(3));
-                int hrs = Integer.parseInt(result.group(4));
-                int min = Integer.parseInt(result.group(5));
-                int sec = Integer.parseInt(result.group(6));
-                s.close();
-                return LocalDateTime.of(year, Month.of(month), day, hrs, min, sec);
-            } else {
-                System.out.println("Not match the date format( day/month/year hh:mm:ss or day-month-year..)");
             }
         }
     }

@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class BillManager {
     private ArrayList<Bill> bills;
-    private SubjectManager subjectManager;
+    private final SubjectManager subjectManager;
 
     public BillManager(SubjectManager subjectManager) {
         this.subjectManager = subjectManager;
@@ -16,10 +16,6 @@ public class BillManager {
 
     public SubjectManager getSubjectManager() {
         return subjectManager;
-    }
-
-    public void setSubjectManager(SubjectManager subjectManager) {
-        this.subjectManager = subjectManager;
     }
 
     public ArrayList<Bill> getBills() {
@@ -32,15 +28,15 @@ public class BillManager {
 
     public void addBills(Scanner scanner) {
         System.out.println("Enter your name of new bill");
-        String name = TryCatch.tryCatchString(scanner);
+        String name = TryCatchAndRegex.tryCatchString(scanner);
         System.out.println("Enter your subject of new bill");
         Subject subject = choiceSubject(scanner);
-        LocalDate date = TryCatch.tryCatchDate(scanner);
-        LocalTime time = TryCatch.tryCatchTime(scanner);
+        LocalDate date = TryCatchAndRegex.tryCatchDate(scanner);
+        LocalTime time = TryCatchAndRegex.tryCatchTime(scanner);
         System.out.println("Enter your expected money to spend of new bill");
-        int expectMoney = TryCatch.tryCatchInt(scanner);
+        int expectMoney = TryCatchAndRegex.tryCatchInt(scanner);
         System.out.println("Enter your real money to spend of new bill");
-        int realMoney = TryCatch.tryCatchInt(scanner);
+        int realMoney = TryCatchAndRegex.tryCatchInt(scanner);
         if (!(name.equals("") || subject.getName().equals("") || date == null || time == null || expectMoney == -1 || realMoney == -1)) {
             Bill bill = new Bill(name, expectMoney, realMoney, date, time, subject);
             if (checkBill(bill)) {
@@ -99,30 +95,30 @@ public class BillManager {
                     for (Bill b : bills1) {
                         Bill temp = new Bill(b.getName(), b.getExpectMoney(), b.getRealMoney(), b.getDate(), b.getTime(), b.getSubject());
                         System.out.println("Enter your new name of bill(Enter to skip)");
-                        String name = TryCatch.tryCatchString(scanner);
+                        String name = TryCatchAndRegex.tryCatchString(scanner);
                         if (!name.equals("")) {
                             temp.setName(name);
                         }
                         System.out.println("choose your new subject of bill(Enter to skip or '1' to continue)");
-                        String subjectName = TryCatch.tryCatchString(scanner);
+                        String subjectName = TryCatchAndRegex.tryCatchString(scanner);
                         if (!subjectName.equals("")) {
                             temp.setSubject(choiceSubject(scanner));
                         }
-                        LocalDate date = TryCatch.tryCatchDate(scanner);
+                        LocalDate date = TryCatchAndRegex.tryCatchDate(scanner);
                         if (date != null) {
                             temp.setDate(date);
                         }
-                        LocalTime time = TryCatch.tryCatchTime(scanner);
+                        LocalTime time = TryCatchAndRegex.tryCatchTime(scanner);
                         if (time != null) {
                             temp.setTime(time);
                         }
                         System.out.println("Enter your expected money to spend of new bill");
-                        int expectMoney = TryCatch.tryCatchInt(scanner);
+                        int expectMoney = TryCatchAndRegex.tryCatchInt(scanner);
                         if (expectMoney != -1) {
                             temp.setExpectMoney(expectMoney);
                         }
                         System.out.println("Enter your real money to spend of new bill");
-                        int realMoney = TryCatch.tryCatchInt(scanner);
+                        int realMoney = TryCatchAndRegex.tryCatchInt(scanner);
                         if (expectMoney != -1) {
                             temp.setRealMoney(realMoney);
                         }
@@ -238,40 +234,40 @@ public class BillManager {
             System.out.println("4.Choice Time");
             System.out.println("5.Complete filter and Search bill with name:" + name + ",subject:" + subjectName + ",from date:" + date1 + " to date:" + date2 + ",from time:" + time1 + " to " + time2);
             System.out.println("0.Done search");
-            choice = TryCatch.tryCatchInt(scanner);
+            choice = TryCatchAndRegex.tryCatchInt(scanner);
             switch (choice) {
                 case 1:
                     System.out.println("Name:");
-                    name = TryCatch.tryCatchString(scanner);
+                    name = TryCatchAndRegex.tryCatchString(scanner);
                     break;
                 case 2:
                     System.out.println("Subject 's name:");
-                    subjectName = TryCatch.tryCatchString(scanner);
+                    subjectName = TryCatchAndRegex.tryCatchString(scanner);
                     break;
                 case 3:
                     System.out.println("Subject 's date or subject 's range of date:");
                     System.out.println("1.Search by exactly date");
                     System.out.println("2.Search by range of date");
-                    int choice1 = TryCatch.tryCatchInt(scanner);
+                    int choice1 = TryCatchAndRegex.tryCatchInt(scanner);
                     if (choice1 == 1) {
-                        date1 = TryCatch.tryCatchDate(scanner);
+                        date1 = TryCatchAndRegex.tryCatchDate(scanner);
                     }
                     if (choice1 == 2) {
-                        date1 = TryCatch.tryCatchDate(scanner);
-                        date2 = TryCatch.tryCatchDate(scanner);
+                        date1 = TryCatchAndRegex.tryCatchDate(scanner);
+                        date2 = TryCatchAndRegex.tryCatchDate(scanner);
                     }
                     break;
                 case 4:
                     System.out.println("Subject 's time or subject 's range of date:");
                     System.out.println("1.Search by exactly date");
                     System.out.println("2.Search by range of date");
-                    int choice2 = TryCatch.tryCatchInt(scanner);
+                    int choice2 = TryCatchAndRegex.tryCatchInt(scanner);
                     if (choice2 == 1) {
-                        time1 = TryCatch.tryCatchTime(scanner);
+                        time1 = TryCatchAndRegex.tryCatchTime(scanner);
                     }
                     if (choice2 == 2) {
-                        time1 = TryCatch.tryCatchTime(scanner);
-                        time2 = TryCatch.tryCatchTime(scanner);
+                        time1 = TryCatchAndRegex.tryCatchTime(scanner);
+                        time2 = TryCatchAndRegex.tryCatchTime(scanner);
                     }
                     break;
                 case 5:

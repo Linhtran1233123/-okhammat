@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class WriteReadFile {
-    public static <T extends Save<T>> void saveBill(ArrayList<T> arr,String name) {
+    public static <T extends Save> void saveBill(ArrayList<T> arr,String name) {
         Path path = Paths.get("source\\"+name+".csv");
         try {
             if (!Files.exists(path)) {

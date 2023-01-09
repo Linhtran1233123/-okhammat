@@ -1,4 +1,4 @@
-public class Subject implements  Save<Subject> {
+public class Subject implements  Save {
     private String name;
 
     public Subject(String name) {

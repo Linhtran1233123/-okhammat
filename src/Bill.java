@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 
-public class Bill implements  Save<Bill>{
+public class Bill implements  Save{
 
     private String name;
     private int expectMoney;

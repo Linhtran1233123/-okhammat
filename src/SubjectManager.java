@@ -37,7 +37,7 @@ public class SubjectManager {
 
     public void addSubject(Scanner scanner) {
         System.out.println("Write name of new Subject:");
-        String name = TryCatch.tryCatchString(scanner);
+        String name = TryCatchAndRegex.tryCatchString(scanner);
         if (!name.equals("")) {
             if (!check(name)) {
                 subjects.add(new Subject(name));
@@ -52,7 +52,7 @@ public class SubjectManager {
 
         public void deleteCategory(Scanner scanner,ArrayList<Bill> bills){
         System.out.println("Write the name of the subject you want to delete: ");
-        String name = TryCatch.tryCatchString(scanner);
+        String name = TryCatchAndRegex.tryCatchString(scanner);
         if(name.equals("")){
             System.out.println("Nothing to delete");
             return;
@@ -73,7 +73,7 @@ public class SubjectManager {
     }
     public void editSubjectByName(Scanner scanner) {
         System.out.println("Write the name of the subject you want to edit: ");
-        String name = TryCatch.tryCatchString(scanner);
+        String name = TryCatchAndRegex.tryCatchString(scanner);
         if (!(searchSubject(name) == null)) {
             System.out.println("Write the new name of the subject you want to edit");
             String newName = scanner.nextLine();

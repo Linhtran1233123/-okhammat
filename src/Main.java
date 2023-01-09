@@ -29,7 +29,7 @@ public class Main {
             System.out.println("8.Summary spent money display by date,month,year ");
             System.out.println("0.Exit");
             System.out.println("Enter your choice");
-            choice = TryCatch.tryCatchInt(scanner);
+            choice = TryCatchAndRegex.tryCatchInt(scanner);
             switch (choice) {
                 case 1:
                     billManager.addBills(scanner);
@@ -72,17 +72,17 @@ public class Main {
             System.out.println("4.Display all bills by time");
             System.out.println("0. Exit");
             System.out.println("Enter your choice: ");
-            choice = TryCatch.tryCatchInt(scanner);
+            choice = TryCatchAndRegex.tryCatchInt(scanner);
             switch (choice) {
                 case 1:
-                    LocalDate date = TryCatch.tryCatchDate(scanner);
+                    LocalDate date = TryCatchAndRegex.tryCatchDate(scanner);
                     if (date != null) {
                         System.out.println("List of bills in day:" + date);
                         billManager.displayBill(billManager.displayBillByDate(date, billManager.getBills()));
                     }
                     break;
                 case 2:
-                    LocalDate date1 = TryCatch.tryCatchMonth(scanner);
+                    LocalDate date1 = TryCatchAndRegex.tryCatchMonth(scanner);
                     if (date1 != null) {
                         System.out.println("List of bills in month:" + date1.getMonthValue() + "/" + date1.getYear());
                         billManager.displayBill(billManager.displayBillByMonth(date1, billManager.getBills()));
@@ -90,12 +90,12 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("Enter the year of bills you want to display");
-                    int year = TryCatch.tryCatchInt(scanner);
+                    int year = TryCatchAndRegex.tryCatchInt(scanner);
                     System.out.println("List of bills in year:" + year);
                     billManager.displayBill(billManager.displayBillByYear(year, billManager.getBills()));
                     break;
                 case 4:
-                    LocalTime time = TryCatch.tryCatchTime(scanner);
+                    LocalTime time = TryCatchAndRegex.tryCatchTime(scanner);
                     System.out.println("List of bills with time: " + time);
                     billManager.displayBill(billManager.displayBillByTime(time, billManager.getBills()));
                     break;
@@ -114,14 +114,14 @@ public class Main {
         System.out.println("5.Update subject");
         System.out.println("0. Exit");
         System.out.println("Enter your choice: ");
-        choice = TryCatch.tryCatchInt(scanner);
+        choice = TryCatchAndRegex.tryCatchInt(scanner);
         switch (choice) {
             case 1:
                subjectManager.displaySubject();
                 break;
             case 2:
                 System.out.println("Enter subject's name to search");
-               String name=TryCatch.tryCatchString(scanner);
+               String name= TryCatchAndRegex.tryCatchString(scanner);
                if(!(name.equals(""))){
                 System.out.println(subjectManager.searchSubject(name).getName());
             } else {
@@ -149,7 +149,7 @@ public static void menuOfSummarySpentMoney(BillCalculator billCalculator,Scanner
         System.out.println("3.Display money spent by year");
         System.out.println("0. Exit");
         System.out.println("Enter your choice: ");
-        choice = TryCatch.tryCatchInt(scanner);
+        choice = TryCatchAndRegex.tryCatchInt(scanner);
         switch (choice) {
             case 1:
                 billCalculator.calculateSpendingByDay(scanner);
